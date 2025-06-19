@@ -104,3 +104,32 @@ document.addEventListener('DOMContentLoaded', () => {
     // Hiển thị sản phẩm ban đầu
     displayProducts();
 });
+// Xử lý nút "Thêm vào giỏ hàng" trên trang chi tiết sản phẩm
+document.addEventListener('DOMContentLoaded', () => {
+    const addToPayBtn = document.querySelector('.add-to-pay-btn');
+    addToPayBtn.addEventListener('click', () => {
+        addToPayBtn.style.transform = 'scale(0.9)';
+        setTimeout(() => {
+            addToPayBtn.style.transform = 'scale(1)';
+        }, 100);
+    });
+})
+
+// Xử lý hiệu ứng cuộn để ẩn/hiển thị footer
+let scrollTimeout;
+
+window.addEventListener('scroll', () => {
+    const footer = document.querySelector('.footer-container');
+    if (!footer) return;
+
+    // Thêm class hidden khi cuộn
+    footer.classList.add('hidden');
+
+    // Xóa timeout cũ (nếu có)
+    clearTimeout(scrollTimeout);
+
+    // Sau 1.5 giây không cuộn, hiển thị lại footer
+    scrollTimeout = setTimeout(() => {
+        footer.classList.remove('hidden');
+    }, 100);
+});
